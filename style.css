@@ -28,8 +28,12 @@ body {
   margin-bottom: 20px;
 }
 
+h1,
+h2 {
+  font-family: 'Inter', sans-serif;
+}
+
 h1 {
-  font-family: Verdana, sans-serif;
   font-weight: bold;
   color: #212121;
 }
@@ -122,12 +126,154 @@ button:hover {
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 250ms ease;
+}
+
+.gallery-open-button:hover img,
+.gallery-open-button:focus-visible img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item img {
+    transition: none;
+  }
+
+  .gallery-open-button:hover img,
+  .gallery-open-button:focus-visible img {
+    transform: none;
+  }
+}
+
+.gallery-open-button {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gallery-open-button:hover {
+  background: transparent;
+}
+
+.gallery-open-button:focus-visible,
+.modal-close:focus-visible {
+  outline: 3px solid #1769aa;
+  outline-offset: 3px;
+}
+
+.gallery-open-button h2 {
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.gallery-open-button p {
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
 }
 
 .gallery-item p {
   margin-top: 10px;
   padding: 5px;
   font-size: 14px;
+}
+
+.image-dialog {
+  width: min(1000px, calc(100% - 24px));
+  max-height: calc(100vh - 24px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: #212121;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+.image-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 -44px auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.94);
+  color: #212121;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+}
+
+.modal-image {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 24px);
+  object-fit: contain;
+  background: #111;
+}
+
+.modal-details {
+  padding: 32px;
+  overflow-wrap: anywhere;
+}
+
+.modal-details h2 {
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.modal-date {
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.modal-explanation {
+  margin-top: 20px;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .image-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100vh - 16px);
+  }
+
+  .modal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-image {
+    max-height: 52vh;
+  }
+
+  .modal-details {
+    padding: 20px;
+  }
 }
 
 /* Placeholder content */
